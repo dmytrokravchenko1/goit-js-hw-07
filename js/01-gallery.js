@@ -26,9 +26,11 @@ function onImgOpenInModal(evt) {
         </img>
     </div>`);
     instance.show();
-    window.addEventListener("keydown", (evt) => {
-        if (evt.code === 'Escape') {
-            instance.close()
-        };
-    });
+    window.addEventListener("keydown", cancelKeyboard)
+    function cancelKeyboard(evt) {
+      if (evt.code === "Escape") {
+        instance.close();
+        window.removeEventListener("keydown", cancelKeyboard);
+      }
+    }
 }
